@@ -5,9 +5,11 @@ app.CatalogView = Backbone.View.extend({
 
 	initialize: function(initialGames) {
 		this.collection = new app.Catalog(initialGames);
+		this.collection.fetch({reset: true});
 		this.render;
 
 		this.listenTo(this.collection, 'add', this.renderGame);
+		this.listenTo(this.collection, 'reset', this.render);
 	},
 
 	events: {
