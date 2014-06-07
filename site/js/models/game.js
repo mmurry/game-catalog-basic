@@ -6,5 +6,10 @@ app.Game = Backbone.Model.extend({
 		system: 'Unknown',
 		purchaseDate: 'Unknown',
 		purchasePrice: 'Unknown'
+	},
+
+	parse: function(response) {
+		response.id = response._id;
+		return response;
 	}
 });

@@ -23,11 +23,16 @@ app.CatalogView = Backbone.View.extend({
 
 	    $('#addGame').find('input, select').each(function(i, el) {
 	        if($(el).val() != '') {
-	            formData[el.id] = $(el).val();
+	        	if(el.id === 'purchaseDate') {
+	        		formData[el.id] = $('#purchaseDate').datepicker('getDate').getTime();
+	        	} else {
+	        		formData[el.id] = $(el).val();
+	        	}
 	        }
+	        $(el).val('');
 	    });
 
-	    this.collection.add(new app.Game(formData));
+	    this.collection.create(formData);
 	},
 
 	render: function() {
